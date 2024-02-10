@@ -1,6 +1,6 @@
 # Angular Poke Trainer
 
-This app recreates a Pokemon Trainer registration using Angular (17.1.3), Custom Angular Material, and consuming the public API [PokéAPI](https://pokeapi.co/).
+This app recreates a Pokemon Trainer registration using Angular (17.1.3), custom themed Angular Material, TailwindCSS, and consuming the public API [PokéAPI](https://pokeapi.co/).
 
 ## Prepare environment
 

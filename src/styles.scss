@@ -1,21 +1,11 @@
 @import 'theme';
+@import 'tailwind';
 
 html,
 body {
-  min-height: 100dvh;
+  @apply min-h-dvh;
 }
 
 body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
+  @apply font-poppins;
 }
