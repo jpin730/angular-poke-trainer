@@ -20,7 +20,7 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 
 Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-> NOTE: Using ChromeHeadless as the browser for the tests for avoiding the need of a browser window.
+> NOTE: Using ChromeHeadless as the browser for avoiding the need of a browser window.
 
 ## Git hooks
 
