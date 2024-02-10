@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { RouterTestingModule } from '@angular/router/testing'
 
 import { ProfilePageComponent } from './profile-page.component'
 
@@ -8,7 +9,7 @@ describe('ProfilePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProfilePageComponent],
+      imports: [ProfilePageComponent, RouterTestingModule],
     }).compileComponents()
 
     fixture = TestBed.createComponent(ProfilePageComponent)
