@@ -19,3 +19,14 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 ## Running unit tests
 
 Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+> NOTE: Using ChromeHeadless as the browser for the tests for avoiding the need of a browser window.
+
+## Git hooks
+
+This project uses [Husky](https://typicode.github.io/husky) to run some checks before committing changes. The checks are:
+
+- Linting and formatting code on commit.
+- Running tests on push.
+
+If these checks fail, the commit/push will be rejected.
