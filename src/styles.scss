@@ -1,11 +1,7 @@
 @import 'theme';
 @import 'tailwind';
-
-html,
-body {
-  @apply min-h-dvh;
-}
+@import 'classes';
 
 body {
-  @apply font-poppins;
+  @apply bg-white font-poppins;
 }

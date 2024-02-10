@@ -24,4 +24,9 @@ describe('MainLayoutComponent', () => {
     const compiled = fixture.nativeElement
     expect(compiled.querySelector('main router-outlet')).toBeTruthy()
   })
+
+  it('should render app-header in header tag', () => {
+    const compiled = fixture.nativeElement
+    expect(compiled.querySelector('header app-header')).toBeTruthy()
+  })
 })
