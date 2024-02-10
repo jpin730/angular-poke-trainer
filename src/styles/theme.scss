@@ -1,0 +1,26 @@
+@use '@angular/material' as mat;
+
+@import 'palettes';
+
+@include mat.core();
+
+$angular-poke-trainer-primary: mat.define-palette($blue-palette, 900);
+$angular-poke-trainer-accent: mat.define-palette($orange-palette, 400);
+$angular-poke-trainer-warn: mat.define-palette(mat.$red-palette);
+
+$angular-poke-trainer-typography: mat.define-typography-config(
+  $font-family: 'Poppins',
+);
+
+$angular-poke-trainer-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $angular-poke-trainer-primary,
+      accent: $angular-poke-trainer-accent,
+      warn: $angular-poke-trainer-warn,
+    ),
+    typography: $angular-poke-trainer-typography,
+  )
+);
+
+@include mat.all-component-themes($angular-poke-trainer-theme);
