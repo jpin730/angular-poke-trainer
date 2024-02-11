@@ -26,10 +26,26 @@
   }
 }
 
-.mdc-button {
+app-root .mdc-button {
   @apply h-12 rounded-xl text-lg font-semibold tracking-normal #{!important};
 
   &.mdc-button--outlined.mat-primary {
     @apply h-8 border-primary-blue-00 text-lg #{!important};
+  }
+}
+
+.mat-mdc-autocomplete-panel {
+  @apply rounded-xl py-0 #{!important};
+
+  .mat-mdc-option {
+    @apply min-h-10 border-b border-b-primary-blue-40-2 font-montserrat text-sm text-primary-blue-10;
+
+    &:last-child {
+      @apply border-b-0;
+    }
+
+    &:hover {
+      @apply bg-primary-blue-40 #{!important};
+    }
   }
 }

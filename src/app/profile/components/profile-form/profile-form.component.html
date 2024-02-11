@@ -10,13 +10,13 @@
     Completa la siguiente información para completar tu perfil
   </p>
 
-  <mat-form-field appearance="outline" class="w-full">
+  <mat-form-field appearance="outline" class="mb-1 w-full">
     <mat-label>Nombre</mat-label>
-    <input matInput formControlName="name" />
+    <input matInput appTrimOnBlur formControlName="name" />
     <mat-error />
   </mat-form-field>
 
-  <mat-form-field appearance="outline" class="w-full">
+  <mat-form-field appearance="outline" class="mb-1 w-full">
     <mat-label>Pasatiempo favorito</mat-label>
     <mat-chip-grid #chipGrid [formControl]="hobbyControl">
       <mat-chip-row
@@ -31,8 +31,8 @@
     </mat-chip-grid>
     <input
       matChipInputAddOnBlur
+      [class]="hobbyControl.value.at(0) && '!hidden'"
       [formControl]="hobbyInputControl"
-      [style.display]="hobbyControl.value.at(0) && 'none'"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [matChipInputFor]="chipGrid"
       [matAutocomplete]="auto"
@@ -40,7 +40,7 @@
     />
     <mat-autocomplete
       #auto="matAutocomplete"
-      class="app-autocomplete"
+      hideSingleSelectionIndicator
       (optionSelected)="selectedHobby($event)"
     >
       <mat-option
@@ -50,15 +50,19 @@
         {{ hobby }}
       </mat-option>
     </mat-autocomplete>
-    <mat-error />
   </mat-form-field>
 
-  <mat-form-field appearance="outline" (click)="picker.open()" class="w-full">
+  <mat-form-field
+    appearance="outline"
+    (click)="picker.open()"
+    class="mb-1 w-full cursor-pointer"
+  >
     <mat-label>Cumpleaños</mat-label>
     <input
       readonly
       matInput
       formControlName="birthday"
+      class="cursor-pointer"
       [max]="today"
       [matDatepicker]="picker"
       (focus)="picker.open()"
@@ -72,7 +76,7 @@
     <mat-error />
   </mat-form-field>
 
-  <mat-form-field appearance="outline" class="w-full">
+  <mat-form-field appearance="outline" class="mb-1 w-full">
     <mat-label>{{
       (isAdult$ | async)
         ? 'Doc Identidad'
@@ -80,14 +84,14 @@
           ? 'Carnet de Minoridad'
           : 'Documento'
     }}</mat-label>
-    <input matInput formControlName="document" />
+    <input matInput appTrimOnBlur formControlName="document" />
     <mat-error />
   </mat-form-field>
 
   <button
     mat-flat-button
     color="primary"
-    class="mt-12"
+    class="mt-12 !px-16"
     type="submit"
     [disabled]="profileForm.invalid"
   >

@@ -9,11 +9,17 @@ import { Observable, distinctUntilChanged, map, startWith, tap } from 'rxjs'
 
 import { MaterialModule } from '@app-material/material.module'
 import { getAge } from '@core/helpers/get-age.helper'
+import { TrimOnBlurDirective } from '@shared/directives/trim-on-blur.directive'
 
 @Component({
   selector: 'app-profile-form',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule, CommonModule],
+  imports: [
+    MaterialModule,
+    ReactiveFormsModule,
+    CommonModule,
+    TrimOnBlurDirective,
+  ],
   templateUrl: './profile-form.component.html',
   styleUrl: './profile-form.component.scss',
 })
@@ -22,7 +28,7 @@ export class ProfileFormComponent implements OnInit {
 
   profileForm = this.fb.group({
     name: ['', [Validators.required]],
-    hobby: this.fb.control<string[]>([], [Validators.required]),
+    hobby: this.fb.control<string[]>([], []),
     birthday: this.fb.control<DateTime | ''>('', [Validators.required]),
     document: ['', []],
   })
@@ -67,13 +73,26 @@ export class ProfileFormComponent implements OnInit {
           ? this.documentControl.addValidators(Validators.required)
           : this.documentControl.removeValidators(Validators.required),
       ),
+      tap(() => this.documentControl.updateValueAndValidity()),
     )
   }
 
   submitProfile() {
     if (this.profileForm.invalid) return
 
-    this.profileForm.getRawValue()
+    const formValue = this.profileForm.getRawValue()
+
+    const birthday =
+      formValue.birthday && formValue.birthday.toFormat('yyyy-MM-dd')
+    const hobby = formValue.hobby.at(0) || ''
+
+    const profile = {
+      ...formValue,
+      birthday,
+      hobby,
+    }
+
+    profile
   }
 
   addHobby(event: MatChipInputEvent): void {
@@ -92,6 +111,7 @@ export class ProfileFormComponent implements OnInit {
   selectedHobby(event: MatAutocompleteSelectedEvent): void {
     this.hobbyControl.setValue([event.option.viewValue])
     this.hobbyInputControl.setValue('')
+    event.option.deselect()
   }
 
   private _filter(value: string): string[] {
