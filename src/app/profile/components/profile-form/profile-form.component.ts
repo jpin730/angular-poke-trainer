@@ -4,12 +4,16 @@ import { Component, OnInit, inject } from '@angular/core'
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete'
 import { MatChipInputEvent } from '@angular/material/chips'
+import { Router } from '@angular/router'
 import { DateTime } from 'luxon'
 import { Observable, distinctUntilChanged, map, startWith, tap } from 'rxjs'
 
 import { MaterialModule } from '@app-material/material.module'
+import { PATH } from '@core/constants/path.constant'
 import { getAge } from '@core/helpers/get-age.helper'
+import { PokeTrainerService } from '@core/services/poke-trainer.service'
 import { TrimOnBlurDirective } from '@shared/directives/trim-on-blur.directive'
+import { SnackBarService } from '@shared/services/snack-bar.service'
 
 @Component({
   selector: 'app-profile-form',
@@ -25,6 +29,9 @@ import { TrimOnBlurDirective } from '@shared/directives/trim-on-blur.directive'
 })
 export class ProfileFormComponent implements OnInit {
   private readonly fb = inject(FormBuilder).nonNullable
+  private readonly pokeTrainerService = inject(PokeTrainerService)
+  private readonly snackBarService = inject(SnackBarService)
+  private readonly router = inject(Router)
 
   profileForm = this.fb.group({
     name: ['', [Validators.required]],
@@ -80,6 +87,11 @@ export class ProfileFormComponent implements OnInit {
   submitProfile() {
     if (this.profileForm.invalid) return
 
+    if (!this.pokeTrainerService.avatar) {
+      this.snackBarService.open('Por favor, adjunte una foto de perfil.')
+      return
+    }
+
     const formValue = this.profileForm.getRawValue()
 
     const birthday =
@@ -92,7 +104,9 @@ export class ProfileFormComponent implements OnInit {
       hobby,
     }
 
-    profile
+    this.pokeTrainerService.profile = profile
+
+    this.router.navigate([PATH.POKEMONS])
   }
 
   addHobby(event: MatChipInputEvent): void {

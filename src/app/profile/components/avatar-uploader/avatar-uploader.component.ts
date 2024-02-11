@@ -1,6 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core'
+import { Component, ElementRef, ViewChild, inject } from '@angular/core'
 
 import { MaterialModule } from '@app-material/material.module'
+import { PokeTrainerService } from '@core/services/poke-trainer.service'
 import { AvatarComponent } from '@shared/components/avatar/avatar.component'
 
 @Component({
@@ -11,6 +12,8 @@ import { AvatarComponent } from '@shared/components/avatar/avatar.component'
   styleUrl: './avatar-uploader.component.scss',
 })
 export class AvatarUploaderComponent {
+  private readonly pokeTrainerService = inject(PokeTrainerService)
+
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>
 
   avatarUrl = ''
@@ -24,6 +27,7 @@ export class AvatarUploaderComponent {
       const file = files.item(0) as File
       this.avatarUrl = URL.createObjectURL(file)
       this.fileName = file.name
+      this.pokeTrainerService.avatar = this.avatarUrl
     }
   }
 
