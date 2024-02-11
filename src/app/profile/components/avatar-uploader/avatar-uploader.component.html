@@ -1,1 +1,30 @@
-<p>avatar-uploader works!</p>
+<div class="flex flex-col items-center pb-12 pt-6">
+  <p class="mb-9 text-2xl text-white lg:text-3xl">Imagen perfil</p>
+
+  <app-avatar [src]="avatarUrl" class="mb-12" />
+
+  <input
+    type="file"
+    class="hidden"
+    accept="image/png, image/jpeg"
+    (change)="saveAvatar($event)"
+    #fileInput
+  />
+
+  <button
+    class="flex w-full items-center justify-between rounded-xl border border-dashed border-primary-blue-40-2 bg-white p-6"
+    (click)="fileName ? clearAvatar() : fileInput.click()"
+  >
+    <span class="truncate text-sm font-medium text-primary-blue-30">{{
+      fileName || 'Adjunta una foto'
+    }}</span>
+
+    <mat-icon
+      class="shrink-0"
+      fontSet="material-icons-outlined"
+      [color]="fileName ? 'warn' : 'primary'"
+    >
+      {{ fileName ? 'restore_from_trash_outlined' : 'cloud_upload_outlined' }}
+    </mat-icon>
+  </button>
+</div>
