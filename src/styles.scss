@@ -1,6 +1,7 @@
 @import 'theme';
 @import 'tailwind';
 @import 'classes';
+@import 'overrides';
 
 body {
   @apply bg-white font-poppins;

@@ -1,0 +1,35 @@
+.mat-mdc-form-field {
+  .mdc-text-field__input {
+    @apply text-neutral-black-50 #{!important};
+  }
+
+  .mdc-notched-outline {
+    .mdc-floating-label > mat-label {
+      @apply tracking-normal;
+    }
+
+    .mdc-floating-label--float-above > mat-label {
+      @apply font-bold;
+    }
+
+    &__leading {
+      @apply rounded-l-xl #{!important};
+    }
+
+    &__notch {
+      @apply border-r-0 #{!important};
+    }
+
+    &__trailing {
+      @apply rounded-r-xl #{!important};
+    }
+  }
+}
+
+.mdc-button {
+  @apply h-12 rounded-xl text-lg font-semibold tracking-normal #{!important};
+
+  &.mdc-button--outlined.mat-primary {
+    @apply h-8 border-primary-blue-00 text-lg #{!important};
+  }
+}
