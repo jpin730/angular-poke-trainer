@@ -14,6 +14,9 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
 
+import { MatErrorDirective } from './directives/mat-error.directive'
+import { MatFormFieldDirective } from './directives/mat-form-field.directive'
+
 const APP_DATE_FORMATS: MatDateFormats = {
   parse: {
     dateInput: 'yyyy-MM-dd',
@@ -26,8 +29,12 @@ const APP_DATE_FORMATS: MatDateFormats = {
   },
 }
 
+const directives = [MatErrorDirective, MatFormFieldDirective]
+
 @NgModule({
+  declarations: [...directives],
   exports: [
+    ...directives,
     LuxonDateModule,
     MatAutocompleteModule,
     MatButtonModule,
