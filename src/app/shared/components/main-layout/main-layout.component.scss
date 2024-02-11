@@ -1,3 +1,7 @@
 :host {
   @apply flex min-h-dvh flex-col;
 }
+
+header {
+  box-shadow: 0px 8px 28px 0px rgba(120, 177, 181, 0.1);
+}
