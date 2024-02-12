@@ -1,5 +1,11 @@
-import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+import { CommonModule, NgOptimizedImage } from '@angular/common'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  booleanAttribute,
+  inject,
+} from '@angular/core'
 import { NgxMaskPipe, provideNgxMask } from 'ngx-mask'
 
 import { MaterialModule } from '@app-material/material.module'
@@ -12,7 +18,13 @@ import { AvatarComponent } from '../avatar/avatar.component'
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [AvatarComponent, MaterialModule, CommonModule, NgxMaskPipe],
+  imports: [
+    AvatarComponent,
+    CommonModule,
+    MaterialModule,
+    NgOptimizedImage,
+    NgxMaskPipe,
+  ],
   providers: [provideNgxMask()],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
@@ -22,6 +34,8 @@ export class ProfileComponent {
   private readonly pokeTrainerService = inject(PokeTrainerService)
 
   DOCUMENT_MASK = DOCUMENT_MASK
+
+  @Input({ transform: booleanAttribute }) medal = false
 
   trainer = this.pokeTrainerService.trainer as Trainer
   age = getAge(this.trainer.birthday)

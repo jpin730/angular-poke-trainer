@@ -1,7 +1,21 @@
 <div class="flex flex-col items-center px-6 pb-7 pt-4 text-white">
-  <h2 class="mb-7 text-center text-3xl font-bold lg:text-4xl">
-    {{ trainer.name }}
-  </h2>
+  <div *ngIf="medal; else trainerName" class="mb-7 flex w-full justify-between">
+    <h2 class="text-2xl font-medium">Entrenador</h2>
+    <img
+      priority
+      width="63"
+      height="57"
+      alt="Medal badge"
+      ngSrc="assets/images/medal-badge.svg"
+    />
+  </div>
+  <ng-template #trainerName>
+    <h2
+      class="lg:text-4x mb-7 w-full break-words text-center text-3xl font-bold"
+    >
+      {{ trainer.name }}
+    </h2>
+  </ng-template>
 
   <app-avatar [src]="trainer.avatar" class="mb-12" />
 
