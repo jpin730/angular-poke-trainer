@@ -1,1 +1,49 @@
-<p>home-page works!</p>
+<div class="main-container">
+  <section
+    class="mx-auto flex w-full max-w-sm items-center justify-between gap-x-1"
+  >
+    <h1 class="truncate text-4xl font-bold text-black">
+      ¡Hola {{ trainer.name | firstWord }}!
+    </h1>
+    <a
+      mat-stroked-button
+      color="primary"
+      class="flex-shrink-0 lg:w-32"
+      [routerLink]="'/' + PATH.PROFILE"
+    >
+      <span class="flex gap-x-2">
+        <mat-icon inline fontSet="material-icons-outlined">edit</mat-icon>
+        <span>Editar perfil</span>
+      </span>
+    </a>
+  </section>
+
+  <span></span>
+
+  <section>
+    <app-trainer-card>
+      <app-profile />
+    </app-trainer-card>
+  </section>
+
+  <section class="mx-auto w-full max-w-lg">
+    <div class="mb-6 flex items-center justify-between gap-x-1">
+      <h2 class="truncate text-3xl text-primary-blue-00">Mis Pokémons</h2>
+      <a
+        mat-stroked-button
+        color="primary"
+        class="flex-shrink-0 lg:w-32"
+        [routerLink]="'/' + PATH.POKEMONS"
+      >
+        <span class="flex gap-x-2">
+          <mat-icon inline fontSet="material-icons-outlined">edit</mat-icon>
+          <span class="">Editar</span>
+        </span>
+      </a>
+    </div>
+
+    <ng-container *ngFor="let pokemon of pokemons">
+      <app-pokemon-overview [pokemon]="pokemon" />
+    </ng-container>
+  </section>
+</div>

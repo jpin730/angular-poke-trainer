@@ -30,7 +30,7 @@ app-root .mdc-button {
   @apply h-12 rounded-xl text-lg font-semibold tracking-normal #{!important};
 
   &.mdc-button--outlined.mat-primary {
-    @apply h-8 border-primary-blue-00 text-lg #{!important};
+    @apply h-8 border-primary-blue-00 text-xs #{!important};
   }
 }
 
