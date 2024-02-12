@@ -2,6 +2,10 @@
   <app-header />
 </header>
 
-<main>
-  <router-outlet />
-</main>
+<app-loader *ngIf="loading; else main" />
+
+<ng-template #main>
+  <main>
+    <router-outlet />
+  </main>
+</ng-template>
