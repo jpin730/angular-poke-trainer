@@ -2,9 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 
 import { PokeTrainerService } from '@core/services/poke-trainer.service'
+import { trainerMock } from 'testing/mocks/moked-trainer.mock'
 import { PokemonsPageComponent } from './pokemons-page.component'
 
-class MockedPokeTrainerService {}
+class MockedPokeTrainerService {
+  trainer = trainerMock
+}
 
 describe('PokemonsPageComponent', () => {
   let component: PokemonsPageComponent

@@ -1,9 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { PokeTrainerService } from '@core/services/poke-trainer.service'
+import { trainerMock } from 'testing/mocks/moked-trainer.mock'
 import { ProfileComponent } from './profile.component'
 
-class MockedPokeTrainerService {}
+class MockedPokeTrainerService {
+  trainer = trainerMock
+}
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent
