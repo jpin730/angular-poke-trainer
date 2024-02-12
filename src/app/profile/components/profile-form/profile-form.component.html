@@ -84,7 +84,12 @@
           ? 'Carnet de Minoridad'
           : 'Documento'
     }}</mat-label>
-    <input matInput appTrimOnBlur formControlName="document" />
+    <input
+      matInput
+      appTrimOnBlur
+      formControlName="document"
+      [mask]="(isAdult$ | async) ? DOCUMENT_MASK : ''"
+    />
     <mat-error />
   </mat-form-field>
 

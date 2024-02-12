@@ -6,9 +6,11 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete'
 import { MatChipInputEvent } from '@angular/material/chips'
 import { Router } from '@angular/router'
 import { DateTime } from 'luxon'
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask'
 import { Observable, distinctUntilChanged, map, startWith, tap } from 'rxjs'
 
 import { MaterialModule } from '@app-material/material.module'
+import { DOCUMENT_MASK } from '@core/constants/document-mask.constant'
 import { PATH } from '@core/constants/path.constant'
 import { getAge } from '@core/helpers/get-age.helper'
 import { PokeTrainerService } from '@core/services/poke-trainer.service'
@@ -19,11 +21,13 @@ import { SnackBarService } from '@shared/services/snack-bar.service'
   selector: 'app-profile-form',
   standalone: true,
   imports: [
-    MaterialModule,
-    ReactiveFormsModule,
     CommonModule,
+    MaterialModule,
+    NgxMaskDirective,
+    ReactiveFormsModule,
     TrimOnBlurDirective,
   ],
+  providers: [provideNgxMask()],
   templateUrl: './profile-form.component.html',
   styleUrl: './profile-form.component.scss',
 })
@@ -32,6 +36,8 @@ export class ProfileFormComponent implements OnInit {
   private readonly pokeTrainerService = inject(PokeTrainerService)
   private readonly snackBarService = inject(SnackBarService)
   private readonly router = inject(Router)
+
+  DOCUMENT_MASK = DOCUMENT_MASK
 
   profileForm = this.fb.group({
     name: ['', [Validators.required]],

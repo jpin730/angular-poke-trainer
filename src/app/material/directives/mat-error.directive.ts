@@ -21,6 +21,9 @@ export class MatErrorDirective {
       case 'required':
         return 'Campo es requerido'
 
+      case 'mask':
+        return 'Formato inválido'
+
       default:
         return ''
     }
