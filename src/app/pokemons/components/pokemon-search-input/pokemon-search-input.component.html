@@ -1,1 +1,10 @@
-<p>pokemon-search-input works!</p>
+<div class="flex gap-x-1 rounded-xl bg-neutral-gray-10 p-2">
+  <mat-icon color="primary">search</mat-icon>
+  <input
+    type="text"
+    placeholder="Buscar por índice, nombre..."
+    class="flex-grow border-none bg-transparent font-montserrat font-extrabold focus:outline-none"
+    [value]="searchText"
+    (input)="onInput($event)"
+  />
+</div>

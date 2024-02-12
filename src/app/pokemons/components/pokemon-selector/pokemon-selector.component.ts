@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { Component, OnInit, inject } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { Observable, map } from 'rxjs'
+import { map, take, tap } from 'rxjs'
 
 import { MAX_POKEMON_SELECTION } from '@core/constants/max-pokemon-selection.constant'
 import { Pokemon } from '@core/interfaces/pokemon.interface'
@@ -22,12 +22,22 @@ import { PokemonSearchInputComponent } from '../pokemon-search-input/pokemon-sea
 export class PokemonSelectorComponent implements OnInit {
   private readonly route = inject(ActivatedRoute)
 
-  pokemons$!: Observable<Pokemon[]>
+  pokemons: Pokemon[] = []
+  filteredPokemons: Pokemon[] = []
   selectedPokemons: number[] = []
   disabledCheckboxes = false
 
   ngOnInit() {
-    this.pokemons$ = this.route.data.pipe(map((data) => data['pokemons'] ?? []))
+    this.route.data
+      .pipe(
+        take(1),
+        map((data) => data['pokemons'] ?? []),
+        tap((pokemons) => {
+          this.pokemons = pokemons
+          this.filteredPokemons = pokemons
+        }),
+      )
+      .subscribe()
   }
 
   onChangePokemonSelection(event: Event) {
@@ -42,5 +52,20 @@ export class PokemonSelectorComponent implements OnInit {
 
     this.disabledCheckboxes =
       this.selectedPokemons.length === MAX_POKEMON_SELECTION
+  }
+
+  filterPokemons(value: string) {
+    const filterValue = value.toLowerCase()
+
+    if (!filterValue) {
+      this.filteredPokemons = this.pokemons
+      return
+    }
+
+    this.filteredPokemons = this.pokemons.filter((pokemon) =>
+      isNaN(+filterValue)
+        ? pokemon.name.toLowerCase().includes(filterValue)
+        : pokemon.id === +filterValue,
+    )
   }
 }

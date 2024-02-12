@@ -1,9 +1,15 @@
-<app-pokemon-search-input class="mb-7 block" />
+<app-pokemon-search-input
+  class="mb-4 block"
+  (inputChange)="filterPokemons($event)"
+/>
 
-<div class="grid h-[476px] grid-cols-2 gap-4 overflow-y-scroll sm:grid-cols-3">
+<div
+  class="grid h-[476px] grid-cols-2 content-start gap-4 overflow-y-scroll sm:grid-cols-3"
+>
   <app-pokemon-checkbox
-    *ngFor="let pokemon of pokemons$ | async"
+    *ngFor="let pokemon of filteredPokemons"
     [pokemon]="pokemon"
+    [checked]="selectedPokemons.includes(pokemon.id)"
     [disabled]="!selectedPokemons.includes(pokemon.id) && disabledCheckboxes"
     (changeChecked)="onChangePokemonSelection($event)"
   />
