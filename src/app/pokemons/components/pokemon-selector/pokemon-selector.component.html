@@ -1,3 +1,4 @@
-<p *ngFor="let pokemon of pokemons$ | async">
-  #{{ pokemon.id }} - {{ pokemon.name }}
-</p>
+<app-pokemon-checkbox
+  *ngFor="let pokemon of pokemons$ | async"
+  [pokemon]="pokemon"
+/>

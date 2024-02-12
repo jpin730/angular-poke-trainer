@@ -4,11 +4,12 @@ import { ActivatedRoute } from '@angular/router'
 import { Observable, map } from 'rxjs'
 
 import { Pokemon } from '@core/interfaces/pokemon.interface'
+import { PokemonCheckboxComponent } from '../pokemon-checkbox/pokemon-checkbox.component'
 
 @Component({
   selector: 'app-pokemon-selector',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PokemonCheckboxComponent],
   templateUrl: './pokemon-selector.component.html',
   styleUrl: './pokemon-selector.component.scss',
 })
