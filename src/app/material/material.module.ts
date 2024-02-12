@@ -8,6 +8,7 @@ import {
   MAT_DATE_FORMATS,
   MAT_DATE_LOCALE,
   MatDateFormats,
+  MatRippleModule,
 } from '@angular/material/core'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatFormFieldModule } from '@angular/material/form-field'
@@ -45,6 +46,7 @@ const directives = [MatErrorDirective, MatFormFieldDirective]
     MatIconModule,
     MatInputModule,
     MatTooltipModule,
+    MatRippleModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es' },

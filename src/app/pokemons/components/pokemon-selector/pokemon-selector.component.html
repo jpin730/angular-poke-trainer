@@ -1,4 +1,6 @@
-<app-pokemon-checkbox
-  *ngFor="let pokemon of pokemons$ | async"
-  [pokemon]="pokemon"
-/>
+<div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+  <app-pokemon-checkbox
+    *ngFor="let pokemon of pokemons$ | async"
+    [pokemon]="pokemon"
+  />
+</div>
