@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { RouterLink } from '@angular/router'
 
 import { MaterialModule } from '@app-material/material.module'
+import { PATH } from '@core/constants/path.constant'
 import { TrainerCardComponent } from '@shared/components/trainer-card/trainer-card.component'
 import { AvatarUploaderComponent } from '../avatar-uploader/avatar-uploader.component'
 import { ProfileFormComponent } from '../profile-form/profile-form.component'
@@ -20,4 +21,6 @@ const components = [
   styleUrl: './profile-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfilePageComponent {}
+export class ProfilePageComponent {
+  PATH = PATH
+}
