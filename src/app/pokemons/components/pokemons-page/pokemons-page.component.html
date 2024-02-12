@@ -1,1 +1,30 @@
-<p>pokemons-page works!</p>
+<div class="app-container grid grid-cols-1 gap-y-10 py-16 lg:grid-cols-2">
+  <section class="flex lg:col-span-2">
+    <button mat-icon-button color="primary" (click)="back()">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <div>
+      <h1 class="mb-2 text-3xl font-semibold text-primary-blue-10 lg:text-4xl">
+        ¡Ya casi términamos!
+      </h1>
+      <p class="text-neutral-gray-40">
+        Revisa la información, y completa lo solicitado.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <app-trainer-card>
+      <app-profile />
+    </app-trainer-card>
+  </section>
+
+  <section>
+    <h2 class="text-3xl text-primary-blue-00">Pokémon</h2>
+    <p class="mb-7 text-lg text-neutral-gray-40">
+      Selecciona 3 Pokémon para que sean parte de tu equipo
+    </p>
+
+    <app-pokemon-selector />
+  </section>
+</div>

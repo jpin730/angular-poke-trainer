@@ -1,10 +1,33 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { Location } from '@angular/common'
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+
+import { MaterialModule } from '@app-material/material.module'
+import { PokeTrainerService } from '@core/services/poke-trainer.service'
+import { ProfileComponent } from '@shared/components/profile/profile.component'
+import { TrainerCardComponent } from '@shared/components/trainer-card/trainer-card.component'
+import { PokemonSelectorComponent } from '../pokemon-selector/pokemon-selector.component'
 
 @Component({
   selector: 'app-pokemons-page',
   standalone: true,
+  imports: [
+    MaterialModule,
+    PokemonSelectorComponent,
+    ProfileComponent,
+    TrainerCardComponent,
+  ],
   templateUrl: './pokemons-page.component.html',
   styleUrl: './pokemons-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PokemonsPageComponent {}
+export class PokemonsPageComponent {
+  private readonly pokeTrainerService = inject(PokeTrainerService)
+  private readonly location = inject(Location)
+
+  profile = this.pokeTrainerService.profile
+  avatar = this.pokeTrainerService.avatar
+
+  back() {
+    this.location.back()
+  }
+}
