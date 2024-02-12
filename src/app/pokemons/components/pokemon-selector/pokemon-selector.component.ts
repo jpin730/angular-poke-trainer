@@ -6,11 +6,16 @@ import { Observable, map } from 'rxjs'
 import { MAX_POKEMON_SELECTION } from '@core/constants/max-pokemon-selection.constant'
 import { Pokemon } from '@core/interfaces/pokemon.interface'
 import { PokemonCheckboxComponent } from '../pokemon-checkbox/pokemon-checkbox.component'
+import { PokemonSearchInputComponent } from '../pokemon-search-input/pokemon-search-input.component'
 
 @Component({
   selector: 'app-pokemon-selector',
   standalone: true,
-  imports: [CommonModule, PokemonCheckboxComponent],
+  imports: [
+    CommonModule,
+    PokemonCheckboxComponent,
+    PokemonSearchInputComponent,
+  ],
   templateUrl: './pokemon-selector.component.html',
   styleUrl: './pokemon-selector.component.scss',
 })
