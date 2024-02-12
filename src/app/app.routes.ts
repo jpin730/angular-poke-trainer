@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router'
 
 import { PATH } from '@core/constants/path.constant'
+import { homeGuard } from '@core/guards/home.guard'
+import { pokemonsGuard } from '@core/guards/pokemons.guard'
 import { firstGenerationPokemonsResolver } from '@core/resolvers/first-generation-pokemons.resolver'
 import { MainLayoutComponent } from '@shared/components/main-layout/main-layout.component'
 
@@ -15,6 +17,7 @@ export const routes: Routes = [
           import('./home/components/home-page/home-page.component').then(
             (m) => m.HomePageComponent,
           ),
+        canActivate: [homeGuard],
       },
       {
         path: PATH.PROFILE,
@@ -30,6 +33,7 @@ export const routes: Routes = [
             './pokemons/components/pokemons-page/pokemons-page.component'
           ).then((m) => m.PokemonsPageComponent),
         resolve: { pokemons: firstGenerationPokemonsResolver },
+        canActivate: [pokemonsGuard],
       },
       {
         path: '**',
