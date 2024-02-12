@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 
 import { Profile } from '@core/interfaces/profile.interface'
+import { Trainer } from '@core/interfaces/trainer.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +24,11 @@ export class PokeTrainerService {
 
   get avatar() {
     return this._avatar
+  }
+
+  get trainer(): Trainer | null {
+    return this._avatar && this._profile
+      ? { ...this._profile, avatar: this._avatar }
+      : null
   }
 }

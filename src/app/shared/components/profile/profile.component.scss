@@ -1,0 +1,11 @@
+.profile-field {
+  @apply mb-1 flex w-full flex-col justify-between gap-x-1 text-xl lg:flex-row lg:text-2xl;
+
+  strong {
+    @apply flex-shrink truncate text-center lg:text-left;
+  }
+
+  span {
+    @apply flex-shrink-0 truncate text-center lg:text-right;
+  }
+}

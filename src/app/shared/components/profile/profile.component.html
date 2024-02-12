@@ -1,1 +1,30 @@
-<p>profile works!</p>
+<div class="flex flex-col items-center px-6 pb-7 pt-4 text-white">
+  <h2 class="mb-7 text-center text-3xl font-bold lg:text-4xl">
+    {{ trainer.name }}
+  </h2>
+
+  <app-avatar [src]="trainer.avatar" class="mb-12" />
+
+  <p *ngIf="trainer.hobby" class="profile-field" matTooltip="Pasatiempo">
+    <strong>Pasatiempo:</strong>
+    <span>
+      {{ trainer.hobby }}
+    </span>
+  </p>
+
+  <p class="profile-field" matTooltip="Edad">
+    <strong>Edad:</strong>
+    <span>{{ age }} years</span>
+  </p>
+
+  <p
+    *ngIf="trainer.document"
+    class="profile-field"
+    [matTooltip]="isAdult ? 'DUI' : 'Doc'"
+  >
+    <strong> {{ isAdult ? 'DUI' : 'Doc' }}: </strong>
+    <span>
+      {{ trainer.document | mask: (isAdult ? DOCUMENT_MASK : 'A*') }}
+    </span>
+  </p>
+</div>
