@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router'
 
 import { PATH } from '@core/constants/path.constant'
+import { firstGenerationPokemonsResolver } from '@core/resolvers/first-generation-pokemons.resolver'
 import { MainLayoutComponent } from '@shared/components/main-layout/main-layout.component'
 
 export const routes: Routes = [
@@ -28,6 +29,7 @@ export const routes: Routes = [
           import(
             './pokemons/components/pokemons-page/pokemons-page.component'
           ).then((m) => m.PokemonsPageComponent),
+        resolve: { pokemons: firstGenerationPokemonsResolver },
       },
       {
         path: '**',

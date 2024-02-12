@@ -1,1 +1,3 @@
-<p>pokemon-selector works!</p>
+<p *ngFor="let pokemon of pokemons$ | async">
+  #{{ pokemon.id }} - {{ pokemon.name }}
+</p>
