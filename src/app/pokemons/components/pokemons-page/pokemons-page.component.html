@@ -1,4 +1,4 @@
-<div class="app-container grid grid-cols-1 gap-y-10 py-16 lg:grid-cols-2">
+<div class="main-container">
   <section class="flex lg:col-span-2">
     <button mat-icon-button color="primary" [routerLink]="'/' + PATH.HOME">
       <mat-icon>arrow_back_ios</mat-icon>
@@ -19,9 +19,9 @@
     </app-trainer-card>
   </section>
 
-  <section class="mx-auto w-full max-w-sm sm:max-w-lg">
+  <section class="relative mx-auto w-full max-w-sm sm:max-w-lg lg:-top-16">
     <h2 class="text-3xl text-primary-blue-00">Pokémon</h2>
-    <p class="mb-6 text-neutral-gray-40">
+    <p class="mb-4 text-neutral-gray-40">
       Selecciona 3 Pokémon para que sean parte de tu equipo
     </p>
 
