@@ -3,7 +3,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { RouterTestingModule } from '@angular/router/testing'
 
 import { MaterialModule } from '@app-material/material.module'
+import { PokeTrainerService } from '@core/services/poke-trainer.service'
 import { ProfilePageComponent } from './profile-page.component'
+
+class MockedPokeTrainerService {}
 
 describe('ProfilePageComponent', () => {
   let component: ProfilePageComponent
@@ -12,7 +15,10 @@ describe('ProfilePageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MaterialModule, ProfilePageComponent, RouterTestingModule],
-      providers: [provideAnimationsAsync()],
+      providers: [
+        provideAnimationsAsync(),
+        { provide: PokeTrainerService, useClass: MockedPokeTrainerService },
+      ],
     }).compileComponents()
 
     fixture = TestBed.createComponent(ProfilePageComponent)
