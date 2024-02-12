@@ -12,6 +12,7 @@ import { Pokemon, PokemonStats } from '@core/interfaces/pokemon.interface'
 import { Profile } from '@core/interfaces/profile.interface'
 import { Trainer } from '@core/interfaces/trainer.interface'
 import { SnackBarService } from '@shared/services/snack-bar.service'
+import { mockedPokemons, mockedTrainer } from './mocks'
 
 @Injectable({
   providedIn: 'root',
@@ -22,10 +23,11 @@ export class PokeTrainerService {
 
   private readonly apiBaseUrl = API_BASE_URL
 
-  private _profile: Profile | null = null
-  private _avatar: string | null = null
-  private _firstGenerationPokemons: Record<number, Pokemon> = {}
-  private _pokemons: Pokemon[] | null = null
+  private _profile: Profile | null = { ...mockedTrainer }
+  private _avatar: string | null = mockedTrainer.avatar
+  private _pokemons: Pokemon[] | null = [...mockedPokemons]
+
+  private firstGenerationPokemons: Record<number, Pokemon> = {}
 
   set profile(profile: Profile | null) {
     this._profile = profile && { ...profile }
@@ -47,14 +49,6 @@ export class PokeTrainerService {
     return this._avatar && this._profile
       ? { ...this._profile, avatar: this._avatar }
       : null
-  }
-
-  get firstGenerationPokemons() {
-    return this._firstGenerationPokemons
-  }
-
-  set firstGenerationPokemons(pokemons: Record<number, Pokemon>) {
-    this._firstGenerationPokemons = { ...pokemons }
   }
 
   set pokemonIds(ids: number[] | null) {

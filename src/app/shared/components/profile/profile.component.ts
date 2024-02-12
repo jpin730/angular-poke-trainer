@@ -9,15 +9,6 @@ import { Trainer } from '@core/interfaces/trainer.interface'
 import { PokeTrainerService } from '@core/services/poke-trainer.service'
 import { AvatarComponent } from '../avatar/avatar.component'
 
-const mockedTrainer: Trainer = {
-  name: 'José Sosa',
-  hobby: 'Ver series',
-  birthday: '1995-01-01',
-  document: '056432159',
-  avatar:
-    'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-}
-
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -32,7 +23,7 @@ export class ProfileComponent {
 
   DOCUMENT_MASK = DOCUMENT_MASK
 
-  trainer = this.pokeTrainerService.trainer ?? mockedTrainer
+  trainer = this.pokeTrainerService.trainer as Trainer
   age = getAge(this.trainer.birthday)
   isAdult = this.age >= 18
 }
