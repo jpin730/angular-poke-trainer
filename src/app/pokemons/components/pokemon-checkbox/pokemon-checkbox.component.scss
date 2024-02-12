@@ -1,5 +1,11 @@
-input:checked + label::after {
-  @apply bg-primary-orange-20;
+input {
+  &:checked + label::after {
+    @apply bg-primary-orange-20;
+  }
+
+  &:disabled + label {
+    @apply opacity-40;
+  }
 }
 
 label {

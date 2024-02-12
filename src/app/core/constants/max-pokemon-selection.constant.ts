@@ -1,0 +1,1 @@
+export const MAX_POKEMON_SELECTION = 3
