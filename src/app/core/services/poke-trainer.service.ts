@@ -22,19 +22,19 @@ export class PokeTrainerService {
 
   private readonly apiBaseUrl = API_BASE_URL
 
-  private _profile?: Profile
-  private _avatar?: string
+  private _profile: Profile | null = null
+  private _avatar: string | null = null
   private _firstGenerationPokemons: Record<number, Pokemon> = {}
 
-  set profile(profile: Profile | undefined) {
+  set profile(profile: Profile | null) {
     this._profile = profile
   }
 
   get profile() {
-    return this._profile
+    return this._profile && { ...this._profile }
   }
 
-  set avatar(avatar: string | undefined) {
+  set avatar(avatar: string | null) {
     this._avatar = avatar
   }
 
