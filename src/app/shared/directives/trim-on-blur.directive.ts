@@ -6,7 +6,7 @@ import { FormControlDirective, FormControlName } from '@angular/forms'
   standalone: true,
 })
 export class TrimOnBlurDirective {
-  private formControlDirective = inject(FormControlDirective, {
+  private readonly formControlDirective = inject(FormControlDirective, {
     optional: true,
   })
   private formControlName = inject(FormControlName, { optional: true })
