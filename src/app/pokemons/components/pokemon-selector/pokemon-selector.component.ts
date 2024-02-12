@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common'
 import { Component, OnInit, inject } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { map, take, tap } from 'rxjs'
 
+import { MaterialModule } from '@app-material/material.module'
 import { MAX_POKEMON_SELECTION } from '@core/constants/max-pokemon-selection.constant'
+import { PATH } from '@core/constants/path.constant'
 import { Pokemon } from '@core/interfaces/pokemon.interface'
+import { PokeTrainerService } from '@core/services/poke-trainer.service'
 import { PokemonCheckboxComponent } from '../pokemon-checkbox/pokemon-checkbox.component'
 import { PokemonSearchInputComponent } from '../pokemon-search-input/pokemon-search-input.component'
 
@@ -13,6 +16,7 @@ import { PokemonSearchInputComponent } from '../pokemon-search-input/pokemon-sea
   standalone: true,
   imports: [
     CommonModule,
+    MaterialModule,
     PokemonCheckboxComponent,
     PokemonSearchInputComponent,
   ],
@@ -21,6 +25,8 @@ import { PokemonSearchInputComponent } from '../pokemon-search-input/pokemon-sea
 })
 export class PokemonSelectorComponent implements OnInit {
   private readonly route = inject(ActivatedRoute)
+  private readonly router = inject(Router)
+  private readonly pokeTrainerService = inject(PokeTrainerService)
 
   pokemons: Pokemon[] = []
   filteredPokemons: Pokemon[] = []
@@ -67,5 +73,13 @@ export class PokemonSelectorComponent implements OnInit {
         ? pokemon.name.toLowerCase().includes(filterValue)
         : pokemon.id === +filterValue,
     )
+  }
+
+  savePokemons() {
+    if (this.selectedPokemons.length !== MAX_POKEMON_SELECTION) return
+
+    this.pokeTrainerService.pokemonIds = [...this.selectedPokemons]
+
+    this.router.navigate([PATH.HOME])
   }
 }

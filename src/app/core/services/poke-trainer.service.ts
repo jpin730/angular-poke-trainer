@@ -25,9 +25,10 @@ export class PokeTrainerService {
   private _profile: Profile | null = null
   private _avatar: string | null = null
   private _firstGenerationPokemons: Record<number, Pokemon> = {}
+  private _pokemons: Pokemon[] | null = null
 
   set profile(profile: Profile | null) {
-    this._profile = profile
+    this._profile = profile && { ...profile }
   }
 
   get profile() {
@@ -53,7 +54,15 @@ export class PokeTrainerService {
   }
 
   set firstGenerationPokemons(pokemons: Record<number, Pokemon>) {
-    this._firstGenerationPokemons = pokemons
+    this._firstGenerationPokemons = { ...pokemons }
+  }
+
+  set pokemonIds(ids: number[] | null) {
+    this._pokemons = ids && ids.map((id) => this.firstGenerationPokemons[id])
+  }
+
+  get pokemons() {
+    return this._pokemons && [...this._pokemons]
   }
 
   getFirstGenerationPokemons(): Observable<Pokemon[]> {
