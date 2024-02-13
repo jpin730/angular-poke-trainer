@@ -1,1 +1,50 @@
-<p>{{ pokemon.name }}</p>
+<div class="grid items-center gap-x-6 gap-y-2 pt-6 lg:grid-cols-2">
+  <p class="truncate text-lg text-neutral-gray-00" matTooltip="HP">HP</p>
+  <app-progress-bar
+    [matTooltip]="pokemon.hp + '/' + maxStats.hp"
+    [value]="(pokemon.hp / maxStats.hp) * 100"
+  />
+
+  <p class="truncate text-lg text-neutral-gray-00" matTooltip="Ataque">
+    Ataque
+  </p>
+  <app-progress-bar
+    [matTooltip]="pokemon.attack + '/' + maxStats.attack"
+    [value]="(pokemon.attack / maxStats.attack) * 100"
+  />
+
+  <p class="truncate text-lg text-neutral-gray-00" matTooltip="Defensa">
+    Defensa
+  </p>
+  <app-progress-bar
+    [matTooltip]="pokemon.defense + '/' + maxStats.defense"
+    [value]="(pokemon.defense / maxStats.defense) * 100"
+  />
+
+  <p class="truncate text-lg text-neutral-gray-00" matTooltip="Ataque Especial">
+    Ataque Especial
+  </p>
+  <app-progress-bar
+    [matTooltip]="pokemon.specialAttack + '/' + maxStats.specialAttack"
+    [value]="(pokemon.specialAttack / maxStats.specialAttack) * 100"
+  />
+
+  <p
+    class="truncate text-lg text-neutral-gray-00"
+    matTooltip="Defensa Especial"
+  >
+    Defensa Especial
+  </p>
+  <app-progress-bar
+    [matTooltip]="pokemon.specialDefense + '/' + maxStats.specialDefense"
+    [value]="(pokemon.specialDefense / maxStats.specialDefense) * 100"
+  />
+
+  <p class="truncate text-lg text-neutral-gray-00" matTooltip="Velocidad">
+    Velocidad
+  </p>
+  <app-progress-bar
+    [matTooltip]="pokemon.speed + '/' + maxStats.speed"
+    [value]="(pokemon.speed / maxStats.speed) * 100"
+  />
+</div>
