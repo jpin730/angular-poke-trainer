@@ -3,7 +3,7 @@
     class="mx-auto flex w-full max-w-sm items-center justify-between gap-x-1"
   >
     <h1 class="truncate text-4xl font-bold text-black">
-      ¡Hola {{ trainer.name | firstWord }}!
+      ¡Hola {{ trainer.name | firstWord | titlecase }}!
     </h1>
     <a
       mat-stroked-button
