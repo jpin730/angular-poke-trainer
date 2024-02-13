@@ -4,8 +4,7 @@ export const pokemonsMock: Pokemon[] = [
   {
     id: 1,
     name: 'bulbasaur',
-    sprite:
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png',
+    sprite: 'sprite-1.png',
     type: 'grass/poison',
     hp: 45,
     attack: 49,
@@ -17,8 +16,7 @@ export const pokemonsMock: Pokemon[] = [
   {
     id: 4,
     name: 'charmander',
-    sprite:
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/4.png',
+    sprite: 'sprite-4.png',
     type: 'fire',
     hp: 39,
     attack: 52,
@@ -30,8 +28,7 @@ export const pokemonsMock: Pokemon[] = [
   {
     id: 7,
     name: 'squirtle',
-    sprite:
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/7.png',
+    sprite: 'sprite-7.png',
     type: 'water',
     hp: 44,
     attack: 48,

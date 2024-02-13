@@ -12,9 +12,6 @@ import { Pokemon, PokemonStats } from '@core/interfaces/pokemon.interface'
 import { Profile } from '@core/interfaces/profile.interface'
 import { Trainer } from '@core/interfaces/trainer.interface'
 import { SnackBarService } from '@shared/services/snack-bar.service'
-import { maxStatsMock } from 'testing/mocks/max-stats.mock'
-import { trainerMock } from 'testing/mocks/moked-trainer.mock'
-import { pokemonsMock } from 'testing/mocks/pokemons.mock'
 
 @Injectable({
   providedIn: 'root',
@@ -25,10 +22,10 @@ export class PokeTrainerService {
 
   private readonly apiBaseUrl = API_BASE_URL
 
-  private _profile: Profile | null = { ...trainerMock }
-  private _avatar: string | null = trainerMock.avatar
-  private _pokemons: Pokemon[] | null = [...pokemonsMock]
-  private _maxStats: PokemonStats | null = { ...maxStatsMock }
+  private _profile: Profile | null = null
+  private _avatar: string | null = null
+  private _pokemons: Pokemon[] | null = null
+  private _maxStats: PokemonStats | null = null
 
   private firstGenerationPokemons: Record<number, Pokemon> = {}
 
