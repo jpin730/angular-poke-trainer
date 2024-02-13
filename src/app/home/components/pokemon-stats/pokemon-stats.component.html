@@ -1,32 +1,36 @@
 <div class="grid items-center gap-x-6 gap-y-2 pt-6 lg:grid-cols-2">
   <p class="truncate text-lg text-neutral-gray-00" matTooltip="HP">HP</p>
   <app-progress-bar
-    [matTooltip]="pokemon.hp + '/' + maxStats.hp"
+    [color]="pokemon.type | pokemonTypeColor"
     [value]="(pokemon.hp / maxStats.hp) * 100"
+    [matTooltip]="pokemon.hp + '/' + maxStats.hp"
   />
 
   <p class="truncate text-lg text-neutral-gray-00" matTooltip="Ataque">
     Ataque
   </p>
   <app-progress-bar
-    [matTooltip]="pokemon.attack + '/' + maxStats.attack"
+    [color]="pokemon.type | pokemonTypeColor"
     [value]="(pokemon.attack / maxStats.attack) * 100"
+    [matTooltip]="pokemon.attack + '/' + maxStats.attack"
   />
 
   <p class="truncate text-lg text-neutral-gray-00" matTooltip="Defensa">
     Defensa
   </p>
   <app-progress-bar
-    [matTooltip]="pokemon.defense + '/' + maxStats.defense"
+    [color]="pokemon.type | pokemonTypeColor"
     [value]="(pokemon.defense / maxStats.defense) * 100"
+    [matTooltip]="pokemon.defense + '/' + maxStats.defense"
   />
 
   <p class="truncate text-lg text-neutral-gray-00" matTooltip="Ataque Especial">
     Ataque Especial
   </p>
   <app-progress-bar
-    [matTooltip]="pokemon.specialAttack + '/' + maxStats.specialAttack"
+    [color]="pokemon.type | pokemonTypeColor"
     [value]="(pokemon.specialAttack / maxStats.specialAttack) * 100"
+    [matTooltip]="pokemon.specialAttack + '/' + maxStats.specialAttack"
   />
 
   <p
@@ -36,15 +40,17 @@
     Defensa Especial
   </p>
   <app-progress-bar
-    [matTooltip]="pokemon.specialDefense + '/' + maxStats.specialDefense"
+    [color]="pokemon.type | pokemonTypeColor"
     [value]="(pokemon.specialDefense / maxStats.specialDefense) * 100"
+    [matTooltip]="pokemon.specialDefense + '/' + maxStats.specialDefense"
   />
 
   <p class="truncate text-lg text-neutral-gray-00" matTooltip="Velocidad">
     Velocidad
   </p>
   <app-progress-bar
-    [matTooltip]="pokemon.speed + '/' + maxStats.speed"
+    [color]="pokemon.type | pokemonTypeColor"
     [value]="(pokemon.speed / maxStats.speed) * 100"
+    [matTooltip]="pokemon.speed + '/' + maxStats.speed"
   />
 </div>
