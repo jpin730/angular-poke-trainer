@@ -1,8 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { Pokemon } from '@core/interfaces/pokemon.interface'
+import { PokeTrainerService } from '@core/services/poke-trainer.service'
+import { maxStatsMock } from 'testing/mocks/max-stats.mock'
 import { pokemonsMock } from 'testing/mocks/pokemons.mock'
 import { PokemonOverviewComponent } from './pokemon-overview.component'
+
+class MockedPokeTrainerService {
+  maxStats = maxStatsMock
+}
 
 describe('PokemonOverviewComponent', () => {
   let component: PokemonOverviewComponent
@@ -11,6 +17,9 @@ describe('PokemonOverviewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PokemonOverviewComponent],
+      providers: [
+        { provide: PokeTrainerService, useClass: MockedPokeTrainerService },
+      ],
     }).compileComponents()
 
     fixture = TestBed.createComponent(PokemonOverviewComponent)

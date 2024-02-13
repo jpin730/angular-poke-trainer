@@ -7,7 +7,10 @@ import {
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 
+import { PokeTrainerService } from '@core/services/poke-trainer.service'
 import { MainLayoutComponent } from './main-layout.component'
+
+class MockedPokeTrainerService {}
 
 describe('MainLayoutComponent', () => {
   let component: MainLayoutComponent
@@ -17,6 +20,9 @@ describe('MainLayoutComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MainLayoutComponent, RouterTestingModule],
+      providers: [
+        { provide: PokeTrainerService, useClass: MockedPokeTrainerService },
+      ],
     }).compileComponents()
 
     router = TestBed.inject(Router)
