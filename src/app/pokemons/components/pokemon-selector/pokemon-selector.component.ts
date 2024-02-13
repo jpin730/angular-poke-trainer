@@ -44,6 +44,11 @@ export class PokemonSelectorComponent implements OnInit {
         }),
       )
       .subscribe()
+
+    if (this.pokeTrainerService.pokemonIds) {
+      this.selectedPokemons = this.pokeTrainerService.pokemonIds
+      this.disabledCheckboxes = true
+    }
   }
 
   onChangePokemonSelection(event: Event) {

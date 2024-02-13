@@ -51,11 +51,11 @@ export class ProfileFormComponent implements OnInit {
   filteredHobbies$!: Observable<string[]>
   isAdult$!: Observable<boolean>
   hobbyList: string[] = [
-    'Play Soccer',
-    'Play Basketball',
-    'Play Tennis',
-    'Play Volleyball',
-    'Play Video Games',
+    'Jugar Fútbol',
+    'Jugar Baloncesto',
+    'Jugar Tenis',
+    'Jugar Voleibol',
+    'Jugar Videojuegos',
   ]
 
   get hobbyControl() {
@@ -69,6 +69,8 @@ export class ProfileFormComponent implements OnInit {
   get documentControl() {
     return this.profileForm.controls.document
   }
+
+  constructor() {}
 
   ngOnInit(): void {
     this.filteredHobbies$ = this.hobbyInputControl.valueChanges.pipe(
@@ -88,6 +90,20 @@ export class ProfileFormComponent implements OnInit {
       ),
       tap(() => this.documentControl.updateValueAndValidity()),
     )
+
+    setTimeout(() => {
+      if (this.pokeTrainerService.profile) {
+        const { name, hobby, birthday, document } =
+          this.pokeTrainerService.profile
+
+        this.profileForm.setValue({
+          name,
+          hobby: [hobby],
+          birthday: DateTime.fromISO(birthday),
+          document,
+        })
+      }
+    }, 0)
   }
 
   submitProfile() {
@@ -110,9 +126,13 @@ export class ProfileFormComponent implements OnInit {
       hobby,
     }
 
+    const redirectTo = this.pokeTrainerService.profile
+      ? PATH.HOME
+      : PATH.POKEMONS
+
     this.pokeTrainerService.profile = profile
 
-    this.router.navigate([PATH.POKEMONS])
+    this.router.navigate([redirectTo])
   }
 
   addHobby(event: MatChipInputEvent): void {

@@ -16,8 +16,8 @@ export class AvatarUploaderComponent {
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>
 
-  avatarUrl = ''
-  fileName = ''
+  avatarUrl = this.pokeTrainerService.avatar ?? ''
+  fileName = this.pokeTrainerService.avatar ? 'Eliminar' : ''
 
   saveAvatar(event: Event) {
     const target = event.target as HTMLInputElement
@@ -32,8 +32,9 @@ export class AvatarUploaderComponent {
   }
 
   clearAvatar() {
+    this.fileName = ''
     this.avatarUrl = ''
     this.fileInput.nativeElement.value = ''
-    this.fileName = ''
+    this.pokeTrainerService.avatar = null
   }
 }

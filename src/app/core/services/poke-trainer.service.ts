@@ -55,7 +55,13 @@ export class PokeTrainerService {
   }
 
   set pokemonIds(ids: number[] | null) {
-    this._pokemons = ids && ids.map((id) => this.firstGenerationPokemons[id])
+    this._pokemons =
+      ids &&
+      ids.sort((a, b) => a - b).map((id) => this.firstGenerationPokemons[id])
+  }
+
+  get pokemonIds() {
+    return this._pokemons && this._pokemons.map(({ id }) => id)
   }
 
   get pokemons() {
