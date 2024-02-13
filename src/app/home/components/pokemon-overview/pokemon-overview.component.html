@@ -1,13 +1,16 @@
 <div
-  class="grid justify-items-center rounded-2xl bg-neutral-gray-10 p-6 pt-0 lg:grid-cols-3"
+  class="grid justify-items-center gap-x-6 rounded-2xl bg-neutral-gray-10 p-6 pt-0 lg:grid-cols-3"
 >
-  <div class="flex w-full flex-col items-center">
+  <div class="relative z-10 flex w-full flex-col items-center">
     <img
       width="150"
       height="150"
       [ngSrc]="pokemon.sprite"
       [alt]="pokemon.name"
     />
+
+    <span class="flex-grow"></span>
+
     <h3
       class="max-w-full truncate text-2xl font-bold"
       [matTooltip]="pokemon.name | titlecase"
@@ -17,5 +20,8 @@
     <p class="text-lg">{{ pokemon.type }}</p>
   </div>
 
-  <app-pokemon-stats class="lg:col-span-2" [pokemon]="pokemon" />
+  <app-pokemon-stats
+    class="w-full max-w-sm lg:col-span-2 lg:max-w-full"
+    [pokemon]="pokemon"
+  />
 </div>

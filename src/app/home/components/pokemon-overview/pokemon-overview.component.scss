@@ -1,0 +1,9 @@
+div:has(> img)::after {
+  @apply absolute bottom-14 left-1/2 z-0 block h-16 w-52 -translate-x-20 -rotate-6 content-[''];
+
+  background: radial-gradient(
+    32.69% 42.67% at 37.93% 42.67%,
+    rgba(0, 0, 0, 0.34) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
