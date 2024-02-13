@@ -12,6 +12,7 @@ import { Pokemon, PokemonStats } from '@core/interfaces/pokemon.interface'
 import { Profile } from '@core/interfaces/profile.interface'
 import { Trainer } from '@core/interfaces/trainer.interface'
 import { SnackBarService } from '@shared/services/snack-bar.service'
+import { maxStatsMock } from 'testing/mocks/max-stats.mock'
 import { trainerMock } from 'testing/mocks/moked-trainer.mock'
 import { pokemonsMock } from 'testing/mocks/pokemons.mock'
 
@@ -27,6 +28,7 @@ export class PokeTrainerService {
   private _profile: Profile | null = { ...trainerMock }
   private _avatar: string | null = trainerMock.avatar
   private _pokemons: Pokemon[] | null = [...pokemonsMock]
+  private _maxStats: PokemonStats | null = { ...maxStatsMock }
 
   private firstGenerationPokemons: Record<number, Pokemon> = {}
 
@@ -58,6 +60,37 @@ export class PokeTrainerService {
 
   get pokemons() {
     return this._pokemons && [...this._pokemons]
+  }
+
+  set maxStats(stats: PokemonStats | null) {
+    if (!stats) return
+
+    if (!this._maxStats) {
+      this._maxStats = { ...stats }
+      return
+    }
+
+    const { hp, attack, defense, specialAttack, specialDefense, speed } =
+      this._maxStats
+
+    this._maxStats = {
+      hp: hp < stats.hp ? stats.hp : hp,
+      attack: attack < stats.attack ? stats.attack : attack,
+      defense: defense < stats.defense ? stats.defense : defense,
+      specialAttack:
+        specialAttack < stats.specialAttack
+          ? stats.specialAttack
+          : specialAttack,
+      specialDefense:
+        specialDefense < stats.specialDefense
+          ? stats.specialDefense
+          : specialDefense,
+      speed: speed < stats.speed ? stats.speed : speed,
+    }
+  }
+
+  get maxStats() {
+    return this._maxStats && { ...this._maxStats }
   }
 
   getFirstGenerationPokemons(): Observable<Pokemon[]> {
@@ -112,7 +145,7 @@ export class PokeTrainerService {
   }
 
   private getStatsMap(stats: Stat[]): PokemonStats {
-    return stats.reduce((acc, { stat, base_stat }) => {
+    const mappedStats = stats.reduce((acc, { stat, base_stat }) => {
       if (stat.name.includes('-')) {
         const [firstWord, secondWord] = stat.name.split('-')
         stat.name =
@@ -120,7 +153,12 @@ export class PokeTrainerService {
       }
 
       acc[stat.name as keyof PokemonStats] = base_stat
+
       return acc
     }, {} as PokemonStats)
+
+    this.maxStats = mappedStats
+
+    return mappedStats
   }
 }
