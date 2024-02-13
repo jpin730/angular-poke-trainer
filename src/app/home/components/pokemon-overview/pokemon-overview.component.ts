@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 
 import { MaterialModule } from '@app-material/material.module'
 import { Pokemon } from '@core/interfaces/pokemon.interface'
+import { PokemonTypeToSpanishPipe } from '@shared/pipes/pokemon-type-to-spanish.pipe'
 import { PokemonStatsComponent } from '../pokemon-stats/pokemon-stats.component'
 
 @Component({
@@ -13,6 +14,7 @@ import { PokemonStatsComponent } from '../pokemon-stats/pokemon-stats.component'
     MaterialModule,
     NgOptimizedImage,
     PokemonStatsComponent,
+    PokemonTypeToSpanishPipe,
   ],
   templateUrl: './pokemon-overview.component.html',
   styleUrl: './pokemon-overview.component.scss',

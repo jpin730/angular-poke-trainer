@@ -17,7 +17,9 @@
     >
       {{ pokemon.name | titlecase }}
     </h3>
-    <p class="text-lg">{{ pokemon.type }}</p>
+    <p class="max-w-full truncate text-lg">
+      {{ pokemon.type | pokemonTypeToSpanish }}
+    </p>
   </div>
 
   <app-pokemon-stats
