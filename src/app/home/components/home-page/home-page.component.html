@@ -42,8 +42,11 @@
       </a>
     </div>
 
-    <ng-container *ngFor="let pokemon of pokemons">
-      <app-pokemon-overview [pokemon]="pokemon" class="mb-7 block" />
-    </ng-container>
+    <div class="flex flex-col gap-y-7 overflow-y-scroll lg:h-[540px]">
+      <app-pokemon-overview
+        *ngFor="let pokemon of pokemons"
+        [pokemon]="pokemon"
+      />
+    </div>
   </section>
 </div>
