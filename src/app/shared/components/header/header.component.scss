@@ -1,0 +1,9 @@
+:host ::ng-deep button {
+  &.mat-mdc-outlined-button > .mdc-button__label {
+    @apply -order-1;
+  }
+
+  &.mat-mdc-outlined-button > .mat-icon {
+    @apply -mr-1 ml-2;
+  }
+}
