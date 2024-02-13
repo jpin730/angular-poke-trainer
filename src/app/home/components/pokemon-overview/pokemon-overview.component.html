@@ -1,1 +1,21 @@
-<p>{{ pokemon.name }}</p>
+<div
+  class="grid justify-items-center rounded-2xl bg-neutral-gray-10 p-6 pt-0 lg:grid-cols-3"
+>
+  <div class="flex w-full flex-col items-center">
+    <img
+      width="150"
+      height="150"
+      [ngSrc]="pokemon.sprite"
+      [alt]="pokemon.name"
+    />
+    <h3
+      class="max-w-full truncate text-2xl font-bold"
+      [matTooltip]="pokemon.name | titlecase"
+    >
+      {{ pokemon.name | titlecase }}
+    </h3>
+    <p class="text-lg">{{ pokemon.type }}</p>
+  </div>
+
+  <app-pokemon-stats class="lg:col-span-2" [pokemon]="pokemon" />
+</div>
