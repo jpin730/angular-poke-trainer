@@ -1,11 +1,7 @@
 import { CommonModule } from '@angular/common'
+import { Component, inject } from '@angular/core'
 import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  inject,
-} from '@angular/core'
-import {
+  NavigationCancel,
   NavigationEnd,
   NavigationStart,
   Router,
@@ -23,11 +19,9 @@ import { LoaderComponent } from '../loader/loader.component'
   imports: [RouterOutlet, HeaderComponent, CommonModule, LoaderComponent],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainLayoutComponent {
   private readonly router = inject(Router)
-  private readonly cdr = inject(ChangeDetectorRef)
 
   loading = true
 
@@ -36,18 +30,19 @@ export class MainLayoutComponent {
       .pipe(
         filter(
           (event) =>
-            event instanceof NavigationStart || event instanceof NavigationEnd,
+            event instanceof NavigationStart ||
+            event instanceof NavigationEnd ||
+            event instanceof NavigationCancel,
         ),
         map((event) => event instanceof NavigationStart),
       )
-      .subscribe((loading) => {
-        setTimeout(
-          () => {
-            this.loading = loading
-            this.cdr.detectChanges()
-          },
-          loading ? 0 : LOADER_DELAY,
-        )
-      })
+      .subscribe((loading) =>
+        loading
+          ? (this.loading = loading)
+          : setTimeout(
+              () => (this.loading = loading),
+              loading ? 0 : LOADER_DELAY,
+            ),
+      )
   }
 }
