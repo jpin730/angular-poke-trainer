@@ -1,31 +1,39 @@
 import { TestBed } from '@angular/core/testing'
-import { ResolveFn } from '@angular/router'
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router'
+import { isObservable, of } from 'rxjs'
 
-import { Pokemon } from '@core/interfaces/pokemon.interface'
 import { PokeTrainerService } from '@core/services/poke-trainer.service'
+import { POKEMONS_MOCK } from 'testing/mocks/pokemons.mock'
 import { firstGenerationPokemonsResolver } from './first-generation-pokemons.resolver'
 
-class MockedPokeTrainerService {
-  getFirstGenerationPokemons() {
-    return []
-  }
-}
-
 describe('firstGenerationPokemonsResolver', () => {
-  const executeResolver: ResolveFn<Pokemon[]> = (...resolverParameters) =>
-    TestBed.runInInjectionContext(() =>
-      firstGenerationPokemonsResolver(...resolverParameters),
-    )
-
-  beforeEach(() => {
+  const executeResolver = (
+    pokeTrainerServiceMock: Partial<PokeTrainerService>,
+  ) => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: PokeTrainerService, useClass: MockedPokeTrainerService },
+        { provide: PokeTrainerService, useValue: pokeTrainerServiceMock },
       ],
     })
-  })
+    return TestBed.runInInjectionContext(() =>
+      firstGenerationPokemonsResolver(
+        {} as ActivatedRouteSnapshot,
+        {} as RouterStateSnapshot,
+      ),
+    )
+  }
 
-  it('should be created', () => {
-    expect(executeResolver).toBeTruthy()
+  it('should return first generation pokemons', () => {
+    const result = executeResolver({
+      getFirstGenerationPokemons: () => of(POKEMONS_MOCK),
+    })
+
+    expect(isObservable(result)).toBeTrue()
+
+    if (isObservable(result)) {
+      result.subscribe((pokemons) => {
+        expect(pokemons).toEqual(POKEMONS_MOCK)
+      })
+    }
   })
 })
