@@ -42,3 +42,14 @@ If these checks fail, the commit/push will be rejected.
 ## Deployment
 
 <https://angular-poke-trainer-jpin730.vercel.app>
+
+## Test coverage
+
+```shell
+======== Coverage summary ========
+Statements   : 100.00% ( 299/299 )
+Branches     :  84.11% (  90/107 )
+Functions    : 100.00% (  94/ 94 )
+Lines        : 100.00% ( 272/272 )
+==================================
+```
