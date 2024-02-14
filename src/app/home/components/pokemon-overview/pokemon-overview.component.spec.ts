@@ -2,12 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { Pokemon } from '@core/interfaces/pokemon.interface'
 import { PokeTrainerService } from '@core/services/poke-trainer.service'
-import { maxStatsMock } from 'testing/mocks/max-stats.mock'
-import { pokemonsMock } from 'testing/mocks/pokemons.mock'
+import { MAX_STATS_MOCK } from 'testing/mocks/max-stats.mock'
+import { POKEMONS_MOCK } from 'testing/mocks/pokemons.mock'
 import { PokemonOverviewComponent } from './pokemon-overview.component'
 
 class MockedPokeTrainerService {
-  maxStats = maxStatsMock
+  maxStats = MAX_STATS_MOCK
 }
 
 describe('PokemonOverviewComponent', () => {
@@ -24,7 +24,7 @@ describe('PokemonOverviewComponent', () => {
 
     fixture = TestBed.createComponent(PokemonOverviewComponent)
     component = fixture.componentInstance
-    component.pokemon = { ...pokemonsMock.at(0) } as Pokemon
+    component.pokemon = { ...POKEMONS_MOCK.at(0) } as Pokemon
     fixture.detectChanges()
   })
 

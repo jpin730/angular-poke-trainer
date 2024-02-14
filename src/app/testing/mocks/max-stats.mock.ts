@@ -1,4 +1,4 @@
-export const maxStatsMock = {
+export const MAX_STATS_MOCK = {
   hp: 250,
   attack: 134,
   defense: 180,
