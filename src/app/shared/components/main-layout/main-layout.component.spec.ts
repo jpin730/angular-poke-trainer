@@ -44,6 +44,7 @@ describe('MainLayoutComponent', () => {
   it('should render router-outlet in main tag on loading = false', fakeAsync(() => {
     router.navigate(['/'])
     flush()
+    fixture.detectChanges()
     const compiled = fixture.nativeElement
     expect(component.loading).toBeFalse()
     expect(compiled.querySelector('main router-outlet')).toBeTruthy()
