@@ -1,8 +1,8 @@
 export const MAX_STATS_MOCK = {
-  hp: 250,
-  attack: 134,
-  defense: 180,
-  specialAttack: 154,
-  specialDefense: 125,
-  speed: 150,
+  hp: 45,
+  attack: 52,
+  defense: 65,
+  specialAttack: 65,
+  specialDefense: 65,
+  speed: 65,
 }

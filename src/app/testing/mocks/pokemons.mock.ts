@@ -1,5 +1,7 @@
 import { Pokemon } from '@core/interfaces/pokemon.interface'
 
+export const POKEMONS_ID_MOCK = [1, 4, 7]
+
 export const POKEMONS_MOCK: Pokemon[] = [
   {
     id: 1,
