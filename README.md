@@ -30,3 +30,15 @@ This project uses [Husky](https://typicode.github.io/husky) to run some checks b
 - Running tests on push.
 
 If these checks fail, the commit/push will be rejected.
+
+## Extras
+
+- Responsive design for mobile and desktop.
+- Hobby input can accept any value different from the ones in the list.
+- In trainer card component improve UX/UI by changing font color.
+- Request first generation of Pokemon from the API.
+- Set max stats for Pokemon.
+
+## Deployment
+
+<https://angular-poke-trainer-jpin730.vercel.app>
