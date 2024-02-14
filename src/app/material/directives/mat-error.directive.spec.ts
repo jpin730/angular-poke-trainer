@@ -1,5 +1,6 @@
-import { Component } from '@angular/core'
+import { Component, DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { By } from '@angular/platform-browser'
 
 import { MatErrorDirective } from './mat-error.directive'
 
@@ -11,6 +12,8 @@ class HostComponent {}
 describe('MatErrorDirective', () => {
   let component: HostComponent
   let fixture: ComponentFixture<HostComponent>
+  let directive: MatErrorDirective
+  let matError: DebugElement
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -19,6 +22,8 @@ describe('MatErrorDirective', () => {
 
     fixture = TestBed.createComponent(HostComponent)
     component = fixture.componentInstance
+    matError = fixture.debugElement.query(By.css('mat-error'))
+    directive = matError.injector.get(MatErrorDirective)
     fixture.detectChanges()
   })
 
@@ -27,10 +32,30 @@ describe('MatErrorDirective', () => {
   })
 
   it('should have directive', () => {
-    const directive = fixture.debugElement
-      .query((el) => el.name === 'mat-error')
-      .injector.get(MatErrorDirective)
-
     expect(directive).toBeTruthy()
+  })
+
+  it('should set text content for required errors', () => {
+    const errors = { required: true }
+    directive.setTextContent(errors)
+    expect(matError.nativeElement.textContent).toBe('Campo es requerido')
+  })
+
+  it('should set text content for mask errors', () => {
+    const errors = { mask: true }
+    directive.setTextContent(errors)
+    expect(matError.nativeElement.textContent).toBe('Formato inválido')
+  })
+
+  it('should not set text content for null errors', () => {
+    const errors = null
+    directive.setTextContent(errors)
+    expect(matError.nativeElement.textContent).toBe('')
+  })
+
+  it('should set empty text content for undefined errors', () => {
+    const errors = {}
+    directive.setTextContent(errors)
+    expect(matError.nativeElement.textContent).toBe('')
   })
 })
