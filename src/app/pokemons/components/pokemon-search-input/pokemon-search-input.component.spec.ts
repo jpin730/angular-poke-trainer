@@ -19,4 +19,16 @@ describe('PokemonSearchInputComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('should emit inputChange event', () => {
+    const inputChangeSpy = spyOn(component.inputChange, 'emit')
+
+    const input = fixture.nativeElement.querySelector('input')
+    input.value = '    pikachu    '
+    input.dispatchEvent(new Event('input'))
+
+    fixture.detectChanges()
+
+    expect(inputChangeSpy).toHaveBeenCalledWith('pikachu')
+  })
 })
