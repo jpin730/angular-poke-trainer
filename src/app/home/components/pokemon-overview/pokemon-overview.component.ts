@@ -21,5 +21,5 @@ import { PokemonStatsComponent } from '../pokemon-stats/pokemon-stats.component'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokemonOverviewComponent {
-  @Input() pokemon!: Pokemon
+  @Input({ required: true }) pokemon!: Pokemon
 }

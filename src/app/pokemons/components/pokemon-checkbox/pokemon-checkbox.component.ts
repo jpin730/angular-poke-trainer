@@ -19,7 +19,7 @@ import { Pokemon } from '@core/interfaces/pokemon.interface'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokemonCheckboxComponent {
-  @Input() pokemon!: Pokemon
+  @Input({ required: true }) pokemon!: Pokemon
   @Input() disabled = false
   @Input() checked = false
 

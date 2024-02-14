@@ -22,7 +22,7 @@ import { PokemonTypeColorPipe } from '@shared/pipes/pokemon-type-color.pipe'
 export class PokemonStatsComponent {
   private readonly pokeTrainService = inject(PokeTrainerService)
 
-  @Input() pokemon!: Pokemon
+  @Input({ required: true }) pokemon!: Pokemon
 
   maxStats = this.pokeTrainService.maxStats as PokemonStats
 }
