@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { Component, inject } from '@angular/core'
+import { Component, OnDestroy, inject } from '@angular/core'
 import {
   NavigationCancel,
   NavigationEnd,
@@ -10,6 +10,7 @@ import {
 import { filter, map } from 'rxjs'
 
 import { LOADER_DELAY } from '@core/constants/loader-delay.constant'
+import { SubSink } from '@core/helpers/sub-sink.helper'
 import { HeaderComponent } from '../header/header.component'
 import { LoaderComponent } from '../loader/loader.component'
 
@@ -20,13 +21,15 @@ import { LoaderComponent } from '../loader/loader.component'
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss',
 })
-export class MainLayoutComponent {
+export class MainLayoutComponent implements OnDestroy {
   private readonly router = inject(Router)
+
+  subs = new SubSink()
 
   loading = true
 
   constructor() {
-    this.router.events
+    this.subs.sink = this.router.events
       .pipe(
         filter(
           (event) =>
@@ -44,5 +47,9 @@ export class MainLayoutComponent {
               loading ? 0 : LOADER_DELAY,
             ),
       )
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe()
   }
 }
