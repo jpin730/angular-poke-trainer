@@ -6,20 +6,4 @@
     alt="Pokemon logo"
     ngSrc="assets/images/pokemon-logo.svg"
   />
-
-  <span class="flex-grow"></span>
-
-  <div
-    class="flex items-center lg:gap-x-12"
-    *ngIf="currentUrl.includes(PATH.HOME)"
-  >
-    <button mat-stroked-button color="primary" class="lg:w-40">
-      {{ trainer?.name ?? '' | firstWord | titlecase }}
-      <mat-icon color="primary">expand_more</mat-icon>
-    </button>
-
-    <button mat-icon-button color="primary">
-      <mat-icon>search</mat-icon>
-    </button>
-  </div>
 </div>
