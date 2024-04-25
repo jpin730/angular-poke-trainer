@@ -39,10 +39,6 @@ If these checks fail, the commit/push will be rejected.
 - Request first generation of Pokemon from the API.
 - Set max stats for Pokemon.
 
-## Deployment
-
-<https://angular-poke-trainer-jpin730.vercel.app>
-
 ## Test coverage
 
 ```shell
